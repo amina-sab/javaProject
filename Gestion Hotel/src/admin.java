@@ -123,10 +123,11 @@ public class admin {
 	// chercher les chambres disponibles
 	public ArrayList <chambre> getRooms(LocalDate deb,LocalDate fin){
 		ArrayList  <chambre> ch=new <chambre> ArrayList();
+		
 		for(reservation r : reservations){
 			
 		}
-		
+
 
 		return ch;
 	}
