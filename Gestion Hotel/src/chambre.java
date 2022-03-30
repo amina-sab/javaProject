@@ -36,7 +36,8 @@ public class chambre {
 
     //
 
-    public String affiche_ch() {
+    public String showRoom() {
         return ("numero de chambre: " + num_ch + " , " + " etage: " + etage + " , " + " type: " + type);
     }
+
 }

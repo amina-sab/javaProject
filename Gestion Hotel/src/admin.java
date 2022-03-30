@@ -6,6 +6,7 @@ public class admin {
 	ArrayList<chambre> rooms = new ArrayList<chambre>();
 	ArrayList<client> clients = new ArrayList<client>();
 	ArrayList<reservation> reservations = new ArrayList<reservation>();
+	ArrayList<sejour> sejours = new ArrayList<sejour>();
 
 	//////////////////////////////////////////////////////////////
 	///////////////// GESTION DES CHAMBRES /////////////////////
@@ -20,9 +21,9 @@ public class admin {
 
 	// afficher toutes les chambres dispo et non dispop
 
-	public void affiche_rooms() {
+	public void showRooms() {
 		for (chambre c : rooms) {
-			System.out.println(c.affiche_ch());
+			System.out.println(c.showRoom());
 		}
 
 	}
@@ -30,10 +31,23 @@ public class admin {
 	// modifier une chambre
 	// -----> le cout //-----> la disponibilite //-----> l'etat /----->
 
-	public void modifRoom() {
+	public void setRoom() {//in chambre class NOT HERE
 
 		// modifier le prix ou le type de chambre
 	}
+
+	// getPrice of room with num room
+
+	public int getPrice(int id_ch) {
+		int price = 0;
+		for (chambre ch : rooms) {
+			if (ch.num_ch == id_ch) {
+				price = ch.getPrice();
+			}
+		}
+		return price;
+	}
+
 	////////////////////////////////////////////////////////////////
 	///////////////// GESTION DES CLIENTS /////////////////////
 	////////////////////////////////////////////////////////////////
@@ -92,7 +106,7 @@ public class admin {
 
 	// on affiche des messages pour eviter les erreurs et aussi quand on a plusieurs
 	// clients au meme nom �a nous permet de supprimer celui qu'on veut
-	public void suppClient(int cl_id) {
+	public void deleteClient(int cl_id) {
 		String answr = JOptionPane.showInputDialog(
 				"do you really want to remove client " + getClientName(cl_id) + " ? (Y to confirm N to cancel)");
 		if (answr.equalsIgnoreCase("Y")) {
@@ -101,17 +115,17 @@ public class admin {
 		} else if (answr.equalsIgnoreCase("N")) {
 			JOptionPane.showMessageDialog(null, getClientName(cl_id) + " is not removed.");
 		} else {
-			suppClient(cl_id);
+			deleteClient(cl_id);
 		}
 
 	}
 
-	public void suppClient(String nom, String prenom) {
+	public void deleteClient(String nom, String prenom) {
 		ArrayList<Integer> cls = new ArrayList<Integer>();
 		cls = getClientId(nom, prenom);
 		if (cls.size() != 0) {
 			for (int i : cls) {
-				suppClient(i);
+				deleteClient(i);
 			}
 		}
 	}
@@ -121,13 +135,12 @@ public class admin {
 	////////////////////////////////////////////////////////////////
 
 	// chercher les chambres disponibles
-	public ArrayList <chambre> getRooms(LocalDate deb,LocalDate fin){
-		ArrayList  <chambre> ch=new <chambre> ArrayList();
-		
-		for(reservation r : reservations){
-			
-		}
+	public ArrayList<chambre> getRooms(LocalDate deb, LocalDate fin) {
+		ArrayList<chambre> ch = new <chambre>ArrayList();
 
+		for (reservation r : reservations) {
+
+		}
 
 		return ch;
 	}
@@ -143,5 +156,35 @@ public class admin {
 	public void annul_reserv() {
 
 	}
+
+	//////////////////////////////////////////////////////////////
+	///////////////// GESTION DES SEJOURS ///////////////////////
+	/////////////////////////////////////////////////////////////
+	public void addSejour(sejour s) {// plus the id
+		sejours.add(s);
+		s.id_sejour = sejours.indexOf(s) + 1;// pour qu'on aura pas un id 0
+	}
+
+	public void addBill() {
+
+		for (sejour s : sejours) {
+			for (reservation r : reservations)
+				if (r.id_client == s.id_client) {
+					s.bill = r.getCout() + s.sumConso();
+				}
+
+		}
+	}
+		public int getBill(client cl){
+			
+             int b=0;
+			for(sejour s:sejours){
+             if(cl.id_client==s.id_client)
+			 b=s.getBill();
+			}
+			return b;
+		}
+
+	
 
 }
