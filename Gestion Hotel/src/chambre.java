@@ -3,7 +3,9 @@ public class chambre {
     int num_ch;
     int etage;
     char type;
-    String etat; // soit panne, nettoyage ou
+    String etat;
+    int price=this.getPrice();
+    // soit panne, nettoyage ou
 
     public chambre(int n, int e, char t) {
         num_ch = n;
@@ -40,4 +42,15 @@ public class chambre {
         return ("numero de chambre: " + num_ch + " , " + " etage: " + etage + " , " + " type: " + type);
     }
 
+    public void setRoom(char newType) {
+        
+     this.type=newType;
+     this.price=this.getPrice();
+
+	}
+    public String whenIsRoomDispo(){
+        String when="";
+
+        return when;
+    }
 }

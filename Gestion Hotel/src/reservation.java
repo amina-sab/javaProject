@@ -6,10 +6,11 @@ public class reservation {
     int num_ch;
     chambre ch;
     int id_client;
-    LocalDate reserv_debut;
+    static LocalDate reserv_debut;
     LocalDate reserv_fin;
 
     public reservation(int ch, int cl, LocalDate deb, LocalDate fin) {
+    
         num_ch = ch;
         id_client = cl;
         reserv_debut = deb;
@@ -36,5 +37,9 @@ public class reservation {
 
         return ch.getPrice() * (int) getDays();
     }
+
+    public  String getRoom(){
+       return ch.showRoom();
+     }
 
 }

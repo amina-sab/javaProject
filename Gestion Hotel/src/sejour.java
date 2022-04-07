@@ -9,8 +9,8 @@ public class sejour {
     ArrayList<Integer> minibar = new ArrayList<Integer>();
     int bill;
 
-    public void addConso(int achat) {
-        minibar.add(achat);
+    public void addConso(int conso) {
+        minibar.add(conso);
     }
 
     public int sumConso() {

@@ -1,6 +1,10 @@
+30/03
 add consommation in sejours
 add sejours in admin
 add bill in  admin
 get cout in reservation 
 sum conom in sejour
 get price with num ch in admin
+
+07/04
+ set room in chambres

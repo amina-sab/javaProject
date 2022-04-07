@@ -31,11 +31,6 @@ public class admin {
 	// modifier une chambre
 	// -----> le cout //-----> la disponibilite //-----> l'etat /----->
 
-	public void setRoom() {//in chambre class NOT HERE
-
-		// modifier le prix ou le type de chambre
-	}
-
 	// getPrice of room with num room
 
 	public int getPrice(int id_ch) {
@@ -136,13 +131,21 @@ public class admin {
 
 	// chercher les chambres disponibles
 	public ArrayList<chambre> getRooms(LocalDate deb, LocalDate fin) {
-		ArrayList<chambre> ch = new <chambre>ArrayList();
-
+		ArrayList<chambre> roomsDispo = new <chambre>ArrayList();
+       
 		for (reservation r : reservations) {
+
+			if (fin.isBefore(r.reserv_debut))  {
+			 roomsDispo.add(r.ch);
+			} else if (deb.isAfter(r.reserv_fin)) {
+				roomsDispo.add(r.ch);
+			}
+		}
+		for(chambre c:rooms){
 
 		}
 
-		return ch;
+		return roomsDispo;
 	}
 
 	// public String chambre_dispo() fautg�rer les intervalle de temps read
@@ -175,16 +178,15 @@ public class admin {
 
 		}
 	}
-		public int getBill(client cl){
-			
-             int b=0;
-			for(sejour s:sejours){
-             if(cl.id_client==s.id_client)
-			 b=s.getBill();
-			}
-			return b;
-		}
 
-	
+	public int getBill(client cl) {
+
+		int b = 0;
+		for (sejour s : sejours) {
+			if (cl.id_client == s.id_client)
+				b = s.getBill();
+		}
+		return b;
+	}
 
 }
